@@ -1,0 +1,82 @@
+[
+  {
+    "name": "OPPO F21s Pro 5G",
+    "price": 245.67,
+    "description": "OPPO F21s Pro 5G is a powerful device with a sleek design.",
+    "ratings": 4.5,
+    "images": [
+      {
+        "image": "product_87759895.jpg"
+      }
+    ],
+    "category": "Mobile Phones",
+    "seller": "Amazon",
+    "stock": 5,
+    "numOfReviews": 15,
+    "reviews": []
+  },
+  {
+    "name": "Samsung Galaxy S22",
+    "price": 799.99,
+    "description": "Samsung Galaxy S22 comes with a dynamic AMOLED display and triple camera system.",
+    "ratings": 4.7,
+    "images": [ 
+      {
+        "image": "product_23456789.jpg"
+      }
+    ],
+    "category": "Mobile Phones",
+    "seller": "Samsung Store",
+    "stock": 8,
+    "numOfReviews": 42,
+    "reviews": []
+  },
+  {
+    "name": "iPhone 14 Pro",
+    "price": 999.99,
+    "description": "iPhone 14 Pro with advanced A16 Bionic chip and ProMotion display.",
+    "ratings": 4.8,
+    "images": [
+      {
+        "image": "product_98765432.jpg"
+      }
+    ],
+    "category": "Mobile Phones",
+    "seller": "Apple Store",
+    "stock": 3,
+    "numOfReviews": 120,
+    "reviews": []
+  },
+  {
+    "name": "OnePlus 10 Pro",
+    "price": 699.99,
+    "description": "OnePlus 10 Pro delivers smooth performance and fast charging technology.",
+    "ratings": 4.6,
+    "images": [
+      {
+        "image": "product_34567891.jpg"
+      }
+    ],
+    "category": "Mobile Phones",
+    "seller": "OnePlus Store",
+    "stock": 10,
+    "numOfReviews": 35,
+    "reviews": []
+  },
+  {
+    "name": "Google Pixel 7",
+    "price": 599.99,
+    "description": "Google Pixel 7 features the powerful Google Tensor chip and excellent camera performance.",
+    "ratings": 4.4,
+    "images": [
+      {
+        "image": "product_19283746.jpg"
+      }
+    ],
+    "category": "Mobile Phones",
+    "seller": "Google Store",
+    "stock": 7,
+    "numOfReviews": 50,
+    "reviews": []
+  }
+]
