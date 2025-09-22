@@ -92,6 +92,6 @@ const productSchema = new mongoose.Schema(
     }
 )
 
-let schema = mongoose.model('Product', productSchema)
+let schema = mongoose.model('Product', productSchema) //Product is the model name db will automatically create in plural like "Products"
 
 module.exports = schema
