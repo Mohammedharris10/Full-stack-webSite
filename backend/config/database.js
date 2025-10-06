@@ -6,8 +6,6 @@ const connectDatabase = ()=>{
         useUnifiedTopology: true //use new engine for db
     }).then(con =>{
         console.log(`MongoDB is Connected to the host: ${con.connection.host}` )
-    }).catch((err)=>{
-        console.log(err)
     })
 
 }
