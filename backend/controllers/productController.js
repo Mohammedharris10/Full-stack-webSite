@@ -1,20 +1,24 @@
 const Product = require('../models/productModel')
 const ErrorHandler = require("../utils/errorHandler")
 const catchAsyncError = require("../middlewares/catchAsyncError")
-
+const APIFeatures = require("../utils/apiFeatures")
 
 // Get Products - /api/v1/products
-exports.getProducts = async (req, res, next) => {
-    const products = await Product.find();
-    // ^ find() function return data
-    res.status(200).json(
-        {
-            success: true,
-            count: products.length, //It returns the count of the data
-            products
-        }
-    )
-}
+exports.getProducts = catchAsyncError(async (req, res, next) => {
+
+    const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter();
+    // use APIFeatures class to handle search and filter logic
+    // find() return mongoose query object, not real data yet
+
+    const products = await apiFeatures.query;
+    // now execute the query and wait for actual product data
+
+    res.status(200).json({
+        success: true,
+        count: products.length, // number of products found
+        products // send all product data in response
+    })
+})
 
 //Create Product - /api/v1/product/new
 exports.newProduct = catchAsyncError(async (req, res, next) => {
