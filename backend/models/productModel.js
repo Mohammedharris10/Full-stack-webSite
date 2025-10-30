@@ -2,16 +2,17 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema(
     {
-        name:{
+        name: {
             type: String, //Value Type
             required: [true, "Please Enter product name"], //2nd Arg is Error Message
             trim: true, //It trims the space start and end
             maxLength: [100, "Product name cannot exceed 100 characters"] //we can this field for fix length of the name field
         },
 
-        price:{
+        price: {
             type: Number,
-            default: true
+            required: [true, "Please enter product price"],
+            default: 0
             // We don't need to give require because of we gave default value
         },
 
@@ -20,7 +21,7 @@ const productSchema = new mongoose.Schema(
             required: [true, "Please enter product description"]
         },
 
-        rating:{
+        rating: {
             type: String,
             default: 0
         },
@@ -28,7 +29,7 @@ const productSchema = new mongoose.Schema(
             {
                 image: {
                     type: String,
-                    required: true 
+                    required: true
                 }
             }
         ],
@@ -37,7 +38,7 @@ const productSchema = new mongoose.Schema(
             type: String,
             required: [true, "Enter category name"],
             enum: {
-                values:[
+                values: [
                     'Electronics',
                     "Mobile Phones",
                     'Laptops',
@@ -52,11 +53,11 @@ const productSchema = new mongoose.Schema(
                     "Home"
                 ],
                 message: "Please select correct category"
-               
+
                 //User can't give own category name that's why we specify the fixed category using 'enum' field 
             }
         },
-        seller :{
+        seller: {
             type: String,
             required: [true, "Please enter product seller"]
         },
@@ -65,13 +66,13 @@ const productSchema = new mongoose.Schema(
             required: [true, "Please enter product stock"],
             maxLength: [20, "Product stock cannot exceed 20"]
         },
-        numOfReviews:{
+        numOfReviews: {
             type: Number,
             default: 0
         },
         reviews: [
             {
-                name:{
+                name: {
                     type: String,
                     required: true
                 },
