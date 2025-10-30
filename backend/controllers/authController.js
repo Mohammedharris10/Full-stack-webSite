@@ -1,6 +1,6 @@
 const catchAsyncError = require("../middlewares/catchAsyncError");
 const User = require("../models/userModel");
-const ErrorHandler = require("../middlewares/error");
+const ErrorHandler = require("../utils/errorHandler");
 const sendToken = require("../utils/jwt")
 
 //Creating User registation API -
@@ -30,11 +30,11 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     const user = await User.findOne({ email }).select('+password'); // find user and get password
 
     if (!user) {
-        return next(new ErrorHandler("Invalid email or password", 400))
+        return next(new ErrorHandler("Invalid email or password", 401))
     }
 
-    if (!(await user.isValidPassword(password))) { // check password match or not
-        return next(new ErrorHandler("Invalid email or password", 400))
+    if (!await user.isValidPassword(password)) { // check password match or not
+        return next(new ErrorHandler("Invalid email or password", 401))
     }
 
     sendToken(user, 201, res) // send jwt token if login success

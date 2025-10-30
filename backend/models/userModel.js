@@ -51,7 +51,7 @@ userSchema.methods.getJwtToken = function () {
 
 userSchema.methods.isValidPassword = async function(enterPassword){
     // compare entered password with hashed password
-    await bcrypt.compare(enterPassword, this.password)
+    return await bcrypt.compare(enterPassword, this.password)
 }
 
 let model = mongoose.model('User', userSchema);
