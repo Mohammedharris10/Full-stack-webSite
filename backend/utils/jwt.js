@@ -7,7 +7,7 @@ const sendToken = (user, statusCode, res)=>{
             Date.now() 
             + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
         ),
-        httpOnly: true
+        httpOnly: true // cookie can't access by frontend js
     }
 
     res.status(statusCode)
