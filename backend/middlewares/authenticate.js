@@ -26,14 +26,3 @@ exports.authorizeRoles = (...roles) =>{
     }
 }
 
-exports.logoutUser = (req, res, next) => {
-    res.cookie('token', null, {
-        expires: new Date(Date.now()),
-        httpOnly: true
-    })
-    .status(200)
-    .json({
-        success: true,
-        message: "Loggedout"
-    })
-}

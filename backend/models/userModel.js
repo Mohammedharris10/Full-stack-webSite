@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const validator = require("validator")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
+const crypto = require('crypto');
+const ErrorHandler = require("../utils/errorHandler");
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -29,7 +31,7 @@ const userSchema = new mongoose.Schema({
         default: 'user'
     },
     resetPasswordToken: String, //If field schema has one value like this we can write like this
-    resetPasswordTokenExpire: String,
+    resetPasswordTokenExpire: Date,
     createdAt: {
         type: Date,
         default: Date.now
@@ -37,6 +39,10 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.pre("save", async function (next) {
+
+    if(!this.isModified('password')){
+        next()
+    }
     // before saving user, hash the password before (pre) a document is saved to the database.
     this.password = await bcrypt.hash(this.password, 10)
     // becasue of we never save plain password in database
@@ -52,6 +58,19 @@ userSchema.methods.getJwtToken = function () {
 userSchema.methods.isValidPassword = async function(enterPassword){
     // compare entered password with hashed password
     return await bcrypt.compare(enterPassword, this.password)
+}
+
+userSchema.methods.getResetToken = function(){
+    //Generate Token
+    const token = crypto.randomBytes(20).toString('hex');
+
+    //GenerATE Hash and set to resetPasswordToken
+    this.resetPasswordToken = crypto.createHash('sha256').update(token).digest('hex');
+
+    //set token expire time with 30 minutes
+    this.resetPasswordTokenExpire = Date.now() + 30 * 60 * 1000;
+
+    return token
 }
 
 let model = mongoose.model('User', userSchema);
