@@ -86,7 +86,7 @@ const productSchema = new mongoose.Schema(
                 }
             }
         ],
-        user: {type: mongoose.Schema.Types.ObjectId}
+        user: { type: mongoose.Schema.Types.ObjectId } // store user id from users collection
         ,
         createdAt: {
             type: Date,
@@ -95,6 +95,6 @@ const productSchema = new mongoose.Schema(
     }
 )
 
-let schema = mongoose.model('Product', productSchema) //Product is the model name db will automatically create in plural like "Products"
+let schema = mongoose.model('Product', productSchema) //Product is the model name db will automatically create in plural like "Products'
 
 module.exports = schema

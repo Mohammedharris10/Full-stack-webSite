@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
-const validator = require("validator")
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
-const crypto = require('crypto');
+const mongoose = require("mongoose");        // mongodb connection library
+const validator = require("validator");      // for email and data validation
+const bcrypt = require("bcrypt");            // for hashing passwords
+const jwt = require("jsonwebtoken");         // for creating jwt tokens
+const crypto = require('crypto');          // for generating reset token
 const ErrorHandler = require("../utils/errorHandler");
 
 const userSchema = new mongoose.Schema({
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter email"],
         unique: true, //unique value that's why mentioned this
-        validator: [validator.isEmail, "Please enter valid email"]
+        validate: [validator.isEmail, "Please enter valid email"]
     },
     password: {
         type: String,
@@ -57,7 +57,7 @@ userSchema.methods.getJwtToken = function () {
 
 userSchema.methods.isValidPassword = async function(enterPassword){
     // compare entered password with hashed password
-    return await bcrypt.compare(enterPassword, this.password)
+    return bcrypt.compare(enterPassword, this.password)
 }
 
 userSchema.methods.getResetToken = function(){

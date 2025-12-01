@@ -28,7 +28,7 @@ exports.newProduct = catchAsyncError(async (req, res, next) => {
     res.status(201).json(
         {
             success: true,
-            product // we use this instead of product:product
+            product // we use this instead of 'product:product"
         }
     )
 })
