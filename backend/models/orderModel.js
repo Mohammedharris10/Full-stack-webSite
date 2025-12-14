@@ -44,7 +44,7 @@ const orderSchema = mongoose.Schema({
     // when order delivered
     deliveredAt: { type: Date },
 
-    orderStatus: { type: String, required: true },
+    orderStatus: { type: String, required: true, default: "processing"},
 
     createdAt: { type: Date, default: Date.now }
 });

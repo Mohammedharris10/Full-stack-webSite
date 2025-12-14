@@ -7,10 +7,12 @@ app.use(express.json())                 // enable json body reading
 app.use(cookieParser())                 // enable cookie reading
 
 const products = require("./routes/product")  // product route file
-const auth = require("./routes/auth")         // auth route file
+const auth = require("./routes/auth")        // auth route file
+const order = require("./routes/order")
 
 app.use('/api/v1/', products)           // product APIs base url
 app.use('/api/v1/', auth)               // auth APIs base url
+app.use('/api/v1/', order)
 
 app.use(errorMiddleware)                // use error middleware last
 
