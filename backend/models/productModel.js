@@ -72,10 +72,7 @@ const productSchema = new mongoose.Schema(
         },
         reviews: [
             {
-                name: {
-                    type: String,
-                    required: true
-                },
+                user: { type: mongoose.Schema.Types.ObjectId }, // store user id from users collection
                 rating: {
                     type: String,
                     required: true
