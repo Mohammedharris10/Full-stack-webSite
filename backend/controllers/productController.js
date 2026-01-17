@@ -5,14 +5,13 @@ const APIFeatures = require("../utils/apiFeatures")
 
 // Get Products - /api/v1/products
 exports.getProducts = catchAsyncError(async (req, res, next) => {
-    const resPerPage = 3;
+    const resPerPage = 4;
     const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter().paginate(resPerPage);
     // use APIFeatures class to handle search and filter logic
     // find() return mongoose query object, not real data yet
 
     const products = await apiFeatures.query;
     // now execute the query and wait for actual product data
-
     res.status(200).json({
         success: true,
         count: products.length, // number of products found
@@ -137,10 +136,9 @@ exports.createProductReview = catchAsyncError(async (req, res, next) => {
 
     // calculate average rating from all reviews
     product.ratings =
-        product.reviews.reduce((acc, item) =>
-            {
-                return acc + Number(item.rating)
-            }, 0) / product.reviews.length;
+        product.reviews.reduce((acc, item) => {
+            return acc + Number(item.rating)
+        }, 0) / product.reviews.length;
 
     // console.log(product.ratings);
 
@@ -152,7 +150,7 @@ exports.createProductReview = catchAsyncError(async (req, res, next) => {
     await product.save({ validateBeforeSave: false });
     res.status(200).json({
         success: true
-    }); 
+    });
 })
 
 //Get Reviews - api/v1/reviews?id={product.id}
@@ -174,12 +172,12 @@ exports.deleteReview = catchAsyncError(async (req, res, next) => {
     })
 
     const numOfReviews = reviews.length;
-    let ratings = reviews.reduce((acc, i)=>{
+    let ratings = reviews.reduce((acc, i) => {
         return acc + Number(i.rating)
     }) / reviews.length;
 
-    reviews = isNaN(ratings) ? 0:ratings;
-    await Product.findByIdAndUpdate(req.query.id,{
+    reviews = isNaN(ratings) ? 0 : ratings;
+    await Product.findByIdAndUpdate(req.query.id, {
         reviews,
         ratings,
         numOfReviews

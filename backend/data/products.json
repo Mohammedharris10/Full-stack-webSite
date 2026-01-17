@@ -4,9 +4,9 @@
     "price": 245.67,
     "description": "OPPO F21s Pro 5G is a powerful device with a sleek design.",
     "ratings": 4.5,
-    "images": [
+    "images": [ 
       {
-        "image": "product_87759895.jpg"
+        "image": "images/products/1.jpg"
       }
     ],
     "category": "Mobile Phones",
@@ -22,7 +22,10 @@
     "ratings": 4.7,
     "images": [ 
       {
-        "image": "product_23456789.jpg"
+        "image": "images/products/2.jpg"
+      },
+      {
+        "image": "images/products/3.jpg"
       }
     ],
     "category": "Mobile Phones",
@@ -38,7 +41,7 @@
     "ratings": 4.8,
     "images": [
       {
-        "image": "product_98765432.jpg"
+        "image": "images/products/3.jpg"
       }
     ],
     "category": "Mobile Phones",
@@ -54,7 +57,7 @@
     "ratings": 4.6,
     "images": [
       {
-        "image": "product_34567891.jpg"
+        "image": "images/products/4.jpg"
       }
     ],
     "category": "Mobile Phones",
@@ -70,7 +73,7 @@
     "ratings": 4.4,
     "images": [
       {
-        "image": "product_19283746.jpg"
+        "image": "images/products/5.jpg"
       }
     ],
     "category": "Mobile Phones",

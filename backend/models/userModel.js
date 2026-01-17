@@ -38,39 +38,51 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+// purpose: secure user password by hashing it before saving to database
 userSchema.pre("save", async function (next) {
 
-    if(!this.isModified('password')){
+    // if password not changed, skip hashing
+    if (!this.isModified('password')) {
         next()
     }
-    // before saving user, hash the password before (pre) a document is saved to the database.
+
+    // hash password before save
     this.password = await bcrypt.hash(this.password, 10)
-    // becasue of we never save plain password in database
+
+    // never store plain password
 })
 
+// generate jwt token for logged-in user
 userSchema.methods.getJwtToken = function () {
-     // create jwt token using user id
+
+    // create jwt token using user id
     return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_TIME //token expire time
+        expiresIn: process.env.JWT_EXPIRES_TIME // token expire time
     })
 }
 
-userSchema.methods.isValidPassword = async function(enterPassword){
+// check entered password with stored hashed password
+userSchema.methods.isValidPassword = async function (enterPassword) {
+
     // compare entered password with hashed password
     return bcrypt.compare(enterPassword, this.password)
 }
 
-userSchema.methods.getResetToken = function(){
-    //Generate Token
+// create reset password token for forgot password
+userSchema.methods.getResetToken = function () {
+
+    // generate random token
     const token = crypto.randomBytes(20).toString('hex');
 
-    //GenerATE Hash and set to resetPasswordToken
-    this.resetPasswordToken = crypto.createHash('sha256').update(token).digest('hex');
+    // hash token and store in database
+    this.resetPasswordToken = crypto.createHash('sha256')
+        .update(token)
+        .digest('hex');
 
-    //set token expire time with 30 minutes
+    // set token expiry time (30 minutes)
     this.resetPasswordTokenExpire = Date.now() + 30 * 60 * 1000;
 
-    return token
+    return token; // return original token to send via email
 }
 
 let model = mongoose.model('User', userSchema);

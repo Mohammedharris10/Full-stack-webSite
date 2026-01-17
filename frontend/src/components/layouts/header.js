@@ -1,13 +1,11 @@
 import React from "react";
-// import "../images/logo.png";
 
 export default function Header() {
     return (
         <nav className="navbar row align-items-center">
-
             <div className="col-12 col-md-3">
                 <div className="navbar-brand">
-                    <img width="150px" src="./images/logo.png" alt="Logo" />
+                    <img width="100px" src="/images/logo.png" alt="Logo" />
                 </div>
             </div>
             <div className="col-12 col-md-6 mt-2 mt-md-0">
