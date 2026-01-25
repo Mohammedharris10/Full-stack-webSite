@@ -35,7 +35,7 @@ export default function Home() {
             })
         }
         dispatch(getProducts(page));
-    }, [error, dispatch, page] //if error comes from redux, this block executes again
+    }, [error, dispatch, page]
     )
     return (
         <>{loading ? <Loader /> : <>

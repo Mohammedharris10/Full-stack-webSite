@@ -7,6 +7,7 @@ import { getProduct } from "../../actions/productAction";
 import { useSelector } from "react-redux";
 import Loader from "../layouts/Loader";
 import { Carousel } from 'react-bootstrap';
+import MetaData from "../layouts/MetaDate";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProductDetails = () => {
@@ -24,7 +25,7 @@ const ProductDetails = () => {
     // call api to get single product details
     dispatch(getProduct(id));
 
-  }, []); // run only once when component loads
+  }, [id, dispatch]); // run only once when component loads
 
 
   // if loading → show loader
@@ -33,6 +34,7 @@ const ProductDetails = () => {
   return (<>
     {loading ? <Loader /> : error ? <div className="alert alert-danger">{error}</div> : product && product.name ? (
       <div className="container py-5">
+        <MetaData title={product.name}/>
         <div className="row">
           <div className="col-md-6 d-flex justify-content-center mb-4">
             <Carousel pause= 'hover'>

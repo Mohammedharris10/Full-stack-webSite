@@ -1,4 +1,4 @@
-import {Link, link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default function Loader({product}) {
     return (
@@ -7,7 +7,7 @@ export default function Loader({product}) {
                 <Link to={`product/${product._id}`}><img
                     className="card-img-top mx-auto"
                     src={`/${product.images[0].image}`}
-                    alt="OPPO"
+                    alt={product.name}
                 /></Link>
 
                 <div className="card-body d-flex flex-column">
