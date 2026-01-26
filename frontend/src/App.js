@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from "react-helmet-async";
 import {ToastContainer} from 'react-toastify'
 import ProductDetails from './components/product/productDetails';
+import ProductSearch from './components/product/productSearch';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <ToastContainer theme='dark'/>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/search/:keyword" element={<ProductSearch/>} />
             <Route path="/product/:id" element={<ProductDetails/>} />
           </Routes>
           <Footer />

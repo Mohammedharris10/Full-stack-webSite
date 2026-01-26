@@ -7,7 +7,7 @@ class APIFeatures {
     }
 
     search() {
-        // if keyword present, use regex for name search (case-insensitive)
+        // if keyword present, use regex for 'name' search (case-insensitive)
         let keyword = this.queryStr.keyword ? {
             name: {
                 $regex: this.queryStr.keyword,

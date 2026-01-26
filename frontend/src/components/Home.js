@@ -34,7 +34,7 @@ export default function Home() {
                 position: "bottom-center",
             })
         }
-        dispatch(getProducts(page));
+        dispatch(getProducts(page,null));
     }, [error, dispatch, page] //if error comes from redux, this block executes again
     )
     return (

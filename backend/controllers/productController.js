@@ -6,18 +6,30 @@ const APIFeatures = require("../utils/apiFeatures")
 // Get Products - /api/v1/products
 exports.getProducts = catchAsyncError(async (req, res, next) => {
     const resPerPage = 3;
-    const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter().paginate(resPerPage);
+
     // use APIFeatures class to handle search and filter logic
     // find() return mongoose query object, not real data yet
 
-    const products = await apiFeatures.query;
-    // now execute the query and wait for actual product data
+    let buildQuery = ()=>{
+        return new APIFeatures(Product.find(), req.query).search().filter();
+    }
+    
 
-    const totalProductsCount = await Product.countDocuments({}); // total products before pagination
+    const filteredProductsCount = await buildQuery().query.countDocuments({}); // count after search and filter, before pagination
+    let productsCount = await Product.countDocuments({}); // total products before search and filter
+    console.log("Total Products Count:", filteredProductsCount);
+    // console.log("Filtered Products Count:", totalProductsCount);
+    if (filteredProductsCount !== productsCount) {
+        productsCount = filteredProductsCount;
+    }
+
+    const products = await buildQuery().paginate(resPerPage).query
+
+    // const totalProductsCount = await Product.countDocuments({}); // total products before pagination
     res.status(200).json({
         success: true,
         resPerPage, // products per page
-        count: totalProductsCount, // number of products found
+        count: productsCount, // number of products found
         products // send all product data in response
     })
 })
