@@ -1,13 +1,17 @@
 import axios from 'axios';
 import { productsFail, productsRequest, productsSuccess } from '../slices/productsSlice';
 
-export const getProducts = (pageNo,keyword) => async (dispatch) => {
+export const getProducts = (pageNo,price,keyword) => async (dispatch) => {
     try {
         // set loading state before api call
         dispatch(productsRequest());
         let url = `/api/v1/products?page=${pageNo}`;
         if(keyword){
             url = url + `&keyword=${keyword}`;
+        }
+
+        if(price){
+            url = url + `&price[gte]=${price[0]}&price[lte]=${price[1]}`;   
         }
         // call backend api to fetch all products
         const { data } = await axios.get(url);

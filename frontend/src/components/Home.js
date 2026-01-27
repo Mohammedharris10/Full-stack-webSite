@@ -45,7 +45,7 @@ export default function Home() {
 
                 <div className="row mt-4">
                     {products && products.map(product => (
-                        <Product key={product._id} product={product} />
+                        <Product col={3} key={product._id} product={product} />
                     ))}
                 </div>
                 {productsCount > resPerPage ?
