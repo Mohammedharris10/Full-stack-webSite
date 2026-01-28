@@ -14,7 +14,6 @@ import Slider from "rc-slider"
 import 'rc-slider/assets/index.css';
 import Tooltip from "rc-tooltip"
 import 'rc-tooltip/assets/bootstrap.css';
-import { set } from "mongoose";
 
 export default function ProductSearch() {
 
@@ -39,25 +38,27 @@ export default function ProductSearch() {
                 position: "bottom-center",
             })
         }
-        dispatch(getProducts(page, price, keyword));
+        dispatch(getProducts(page,priceChanged, keyword));
     }, [error, dispatch, page, keyword, priceChanged])
 
     return (
         <>{loading ? <Loader /> : <>
-            <MetaData title={"Home"} />
+            <MetaData title={"Searched Product"} />
             <div className="container mt-4">
                 <h2 id="products_heading">Searched Products</h2>
 
                 <div className="row">
                     <div className="col-6 col-md-3 mb-5 mt-5">
-                        <div className="px-5" onMouseUp={()=>{(setPriceChanged(price))}}>
+                        <div className="px-5" onMouseUp={() =>setPriceChanged(price)}>
                             <Slider
                                 range={true}
                                 marks={{ 1: `$1`, 1000: `$1000` }}
                                 min={1}
                                 max={1000}
                                 defaultValue={price}
-                                onChange={(price) =>{ setPrice(price)}}
+                                onChange={(price)=>{
+                                    setPrice(price)
+                                }}
                                 handleRender={ //~~~~~~
                                     renderProps => {
                                         return (

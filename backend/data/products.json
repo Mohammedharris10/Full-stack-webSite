@@ -81,5 +81,37 @@
     "stock": 7,
     "numOfReviews": 50,
     "reviews": []
+  },
+  {
+    "name": "Google Phoxel 7",
+    "price": 699.99,
+    "description": "Google Pixel 7 features the powerful Google Tensor chip and excellent camera performance.",
+    "ratings": 4.4,
+    "images": [
+      {
+        "image": "images/products/5.jpg"
+      }
+    ],
+    "category": "Mobile Phones",
+    "seller": "Google Store",
+    "stock": 7,
+    "numOfReviews": 50,
+    "reviews": []
+  },
+  {
+    "name": "Google Pixel 8",
+    "price": 399.99,
+    "description": "Google Pixel 7 features the powerful Google Tensor chip and excellent camera performance.",
+    "ratings": 4.4,
+    "images": [
+      {
+        "image": "images/products/5.jpg"
+      }
+    ],
+    "category": "Mobile Phones",
+    "seller": "Google Store",
+    "stock": 7,
+    "numOfReviews": 50,
+    "reviews": []
   }
 ]
