@@ -1,4 +1,4 @@
-import MetaData from "./layouts/MetaDate"
+import MetaData from "./layouts/MetaData"
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import Loader from "./layouts/Loader";
 import Product from "./product/Product";
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { getProducts } from "../actions/productsActions";
+import { getProducts } from "../actions/productActions";
 import Pagination from "react-js-pagination";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -34,7 +34,7 @@ export default function Home() {
                 position: "bottom-center",
             })
         }
-        dispatch(getProducts(page,null));
+        dispatch(getProducts(page));
     }, [error, dispatch, page] //if error comes from redux, this block executes again
     )
     return (

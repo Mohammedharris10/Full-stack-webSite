@@ -3,11 +3,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getProduct } from "../../actions/productAction";
+import { getProduct } from "../../actions/productActions";
 import { useSelector } from "react-redux";
 import Loader from "../layouts/Loader";
 import { Carousel } from 'react-bootstrap';
-import MetaData from "../layouts/MetaDate";
+import MetaData from "../layouts/MetaData";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProductDetails = () => {
